@@ -10,7 +10,7 @@
 <body ng-controller="ToDoController">
 	<ul>
 		<li ng-repeat='actividad in todo'>
-			{{actividad.descripcion}} - {{actividad.fecha | date: 'short'}}
+			{{actividad.descripcion}} - {{actividad.fecha | date: 'short'}} - <a href='#' ng-click='removeActv(actividad)' style='color:red'>x</a>
 		</li>
 	</ul>
 	<form ng-submit="addActv()">
@@ -23,7 +23,7 @@
 		<input type='submit' value='Guardar actividad'>
 		
 	</form>
-	<button ng-click="todo = []">Limpiar</button>
+	<button ng-click="clean()">Limpiar</button>
 
 </body>
 </html>
