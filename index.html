@@ -7,6 +7,14 @@
 	<script src='controller.js'></script>
 </head>
 <body ng-controller="FirstController">
-	{{"Hola" + " " + nombre}}
+	<label for='comentario'>Comentario</label><input type='text' name='comentario' ng-model='nuevoComentario.comentario' /><br/>
+	<label for='username'>Usuario</label><input type='text' name='username' ng-model='nuevoComentario.username' /><br/>
+	<button ng-click="agregarComentario()">Agregar comentario</button>
+	<h3>Comentarios</h3>
+	<ul>
+		<li ng-repeat="comentario in comentarios">
+			{{comentario.comentario}} - <strong>{{comentario.username}}</strong>
+		</li>
+	</ul>
 </body>
 </html>
