@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="MyFirstApp">
+<html ng-app="ToDoList">
 <head>
 	<meta charset='utf-8'/>
 	<title>To do list</title>
@@ -10,10 +10,10 @@
 <body ng-controller="ToDoController">
 	<ul>
 		<li ng-repeat='actividad in todo'>
-			{{actividad.descripcion}} - {{actividad.fecha}}
+			{{actividad.descripcion}} - {{actividad.fecha | date: 'short'}}
 		</li>
 	</ul>
-	<form>
+	<form ng-submit="addActv()">
 		<dl>
 			<dt>Descripción</dt>
 			<dd><input type='text' ng-model='newActv.descripcion'/></dd>
@@ -23,6 +23,7 @@
 		<input type='submit' value='Guardar actividad'>
 		
 	</form>
+	<button ng-click="todo = []">Limpiar</button>
 
 </body>
 </html>
