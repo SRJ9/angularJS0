@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="MyFirstApp">
+<head>
+	<meta charset='utf-8'/>
+	<title>To do list</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src='libs/angular-local-storage.min.js'></script>
+	<script src='to-do-list.js'></script>
+</head>
+<body ng-controller="ToDoController">
+	<ul>
+		<li ng-repeat='actividad in todo'>
+			{{actividad.descripcion}} - {{actividad.fecha}}
+		</li>
+	</ul>
+	<form>
+		<dl>
+			<dt>Descripción</dt>
+			<dd><input type='text' ng-model='newActv.descripcion'/></dd>
+			<dt>Fecha</dt>
+			<dd><input type='datetime-local' ng-model='newActv.fecha'/></dd>
+		</dl>
+		<input type='submit' value='Guardar actividad'>
+		
+	</form>
+
+</body>
+</html>
