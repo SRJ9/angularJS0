@@ -1,5 +1,5 @@
 angular.module("CustomDirective")
-	.controller("AppCtrl", function($scope, $http){
+	.controller("ReposController", function($scope, $http){
 
 		$scope.repos = [];
 
@@ -20,4 +20,16 @@ angular.module("CustomDirective")
 				$scope.main_repo = data;
 			});
 		}
+	})
+	.controller("RepoController", function($scope, $http, $routeParams){
+		$scope.repo = {};
+
+		$http.get('https://api.github.com/repos/SRJ9/'+$routeParams.name)
+			.success(function(data){
+				$scope.repo = data;
+			})
+			.error(function(err){
+				console.log(err);
+			});
+
 	});
