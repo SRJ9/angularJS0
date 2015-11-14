@@ -1,48 +1,44 @@
 // modulos:
 // * ngResource - API
 var app = angular.module("ToDoList", ['LocalStorageModule']);
-app.factory('ToDoService', function(localStorageService){
-	var toDoService = {};
+app.service('ToDoService', function(localStorageService){
+	this.key = 'angular-todolist';
 
-	toDoService.key = 'angular-todolist';
-
-	if(localStorageService.get(toDoService.key)){
-		toDoService.activities = localStorageService.get(toDoService.key);
+	if(localStorageService.get(this.key)){
+		this.activities = localStorageService.get(this.key);
 	} else {
-		toDoService.activities= [];
+		this.activities= [];
 	}
 
-	toDoService.add = function(newActv){
-		toDoService.activities.push(newActv);
-		toDoService.updateLocalStorage();
+	this.add = function(newActv){
+		this.activities.push(newActv);
+		this.updateLocalStorage();
 		// self or this ??
 	}
 
-	toDoService.updateLocalStorage = function(){
-		localStorageService.set(toDoService.key, toDoService.activities);
+	this.updateLocalStorage = function(){
+		localStorageService.set(this.key, this.activities);
 	}
 
-	toDoService.clean = function(){
-		toDoService.activities = [];
-		toDoService.updateLocalStorage();
-		return toDoService.getAll();
+	this.clean = function(){
+		this.activities = [];
+		this.updateLocalStorage();
+		return this.getAll();
 	}
 
-	toDoService.getAll = function(){
-		return toDoService.activities;
+	this.getAll = function(){
+		return this.activities;
 	}
 
-	toDoService.removeItem = function(item){
-		toDoService.activities = toDoService.activities.filter(function(activity){
+	this.removeItem = function(item){
+		this.activities = this.activities.filter(function(activity){
 			return activity !== item;
 		});
-		toDoService.updateLocalStorage();
-		return toDoService.getAll();
+		this.updateLocalStorage();
+		return this.getAll();
 	}
 
 	// buscar por qué watch no es recomendable
-
-	return toDoService;
 });
 app.controller("ToDoController", function($scope, ToDoService){
 	
